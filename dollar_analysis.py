@@ -5,11 +5,13 @@ Created on Sat Apr 22 23:51:22 2023
 
 @author: ashleymathew
 """
+# import Standad packages
 import pandas as pd
 import geopandas as gpd
 import os
 import glob
 
+# Import data for the Obama, Trump, and Biden administration
 case1 = 'Obama_Admin.xlsx'
 Obama_Admin = pd.read_excel(case1)
 
@@ -19,6 +21,9 @@ Trump_Admin = pd.read_excel(case2)
 case3 = 'Biden_Admin.xlsx'
 Biden_Admin = pd.read_excel(case3)
 
+# Create ratios within the Obama dataframe for proportion of Minority Owned 
+# Business dollars to total Small Business Dollars and respective subcategories
+# within Minority Owned Businesses
 Obama_Admin["Proportion of Total Minority Owned Business Dollars to Total Small Business Dollars"] = Obama_Admin["Total Minority Owned Business Dollars"] / Obama_Admin["Small Business Dollars"]     
 
 Obama_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = Obama_Admin["Asian-Pacific American Owned Dollars"] / Obama_Admin["Total Minority Owned Business Dollars"]     
@@ -29,6 +34,7 @@ Obama_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to To
 Obama_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"] = Obama_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] / Obama_Admin["Total Minority Owned Business Dollars"]
 Obama_Admin["Proportion of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars"] = Obama_Admin["Other Minority Owned Business Dollars"] / Obama_Admin["Total Minority Owned Business Dollars"]
 
+# Replicate process for the Trump administration
 Trump_Admin["Proportion of Total Minority Owned Business Dollars to Total Small Business Dollars"] = Trump_Admin["Total Minority Owned Business Dollars"] / Trump_Admin["Small Business Dollars"]     
 
 Trump_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Asian-Pacific American Owned Dollars"] / Trump_Admin["Total Minority Owned Business Dollars"]     
@@ -39,6 +45,7 @@ Trump_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to To
 Trump_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] / Trump_Admin["Total Minority Owned Business Dollars"]
 Trump_Admin["Proportion of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Other Minority Owned Business Dollars"] / Trump_Admin["Total Minority Owned Business Dollars"]
 
+# Replicate process for the Biden administration
 Biden_Admin["Proportion of Total Minority Owned Business Dollars to Total Small Business Dollars"] = Biden_Admin["Total Minority Owned Business Dollars"] / Trump_Admin["Small Business Dollars"]     
 
 Biden_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = Biden_Admin["Asian-Pacific American Owned Dollars"] / Biden_Admin["Total Minority Owned Business Dollars"]     
