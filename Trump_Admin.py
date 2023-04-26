@@ -15,9 +15,6 @@ plt.rcParams['figure.dpi'] = 300
 # Import data for the Trump administration
 case2 = 'Trump_Admin.xlsx'
 Trump_Admin = pd.read_excel(case2) 
-
-#case3 = 'Biden_Admin.csv'
-#Biden_Admin = pd.read_csv(case3)
             
 # Convert to floats
 # Convert float columns to string type
@@ -69,9 +66,9 @@ chart2 = Trump_Data.plot.barh(stacked=True, width=0.8, ax=ax)
 chart2.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart2.set_xlabel('Percentage')
+chart2.set_xlabel('Share of Total Minority Owned Business Dollars')
 chart2.set_ylabel('Department Name')
-chart2.set_title('Contracting Rates to Minority Owned Businesses by Executive Department - Trump Administration')
+chart2.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Trump Administration')
 
 # Adjust the font size of the x-axis tick labels
 chart2.tick_params(axis='x', labelsize=7)

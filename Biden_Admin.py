@@ -15,9 +15,6 @@ plt.rcParams['figure.dpi'] = 300
 # Import data for the Biden administration
 case3 = 'Biden_Admin.xlsx'
 Biden_Admin = pd.read_excel(case3) 
-
-#case3 = 'Biden_Admin.csv'
-#Biden_Admin = pd.read_csv(case3)
             
 # Convert to floats
 # Convert float columns to string type
@@ -69,9 +66,9 @@ chart3 = Biden_Data.plot.barh(stacked=True, width=0.8, ax=ax)
 chart3.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart3.set_xlabel('Percentage')
+chart3.set_xlabel('Share of Total Minority Owned Business Dollars')
 chart3.set_ylabel('Department Name')
-chart3.set_title('Contracting Rates to Minority Owned Businesses by Executive Department - Biden Administration')
+chart3.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Biden Administration')
 
 # Adjust the font size of the x-axis tick labels
 chart3.tick_params(axis='x', labelsize=7)

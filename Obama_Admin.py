@@ -16,9 +16,6 @@ plt.rcParams['figure.dpi'] = 300
 # Import data for the Obama administration
 case1 = 'Obama_Admin.xlsx'
 Obama_Admin = pd.read_excel(case1) 
-
-#case3 = 'Biden_Admin.csv'
-#Biden_Admin = pd.read_csv(case3)
             
 # Convert float columns to string type
 Obama_Admin["Total Minority Owned Business Dollars"] = Obama_Admin["Total Minority Owned Business Dollars"].astype(str)
@@ -69,9 +66,9 @@ chart = Obama_Data.plot.barh(stacked=True, width=0.8, ax=ax)
 chart.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart.set_xlabel('Percentage')
+chart.set_xlabel('Share of Total Minority Owned Business Dollars')
 chart.set_ylabel('Department Name')
-chart.set_title('Contracting Rates to Minority Owned Businesses by Executive Department - Obama Administration')
+chart.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Obama Administration')
 
 # Adjust the font size of the x-axis tick labels
 chart.tick_params(axis='x', labelsize=7)
