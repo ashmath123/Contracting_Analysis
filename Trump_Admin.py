@@ -6,9 +6,6 @@ Created on Wed Apr 26 17:26:44 2023
 @author: ashleymathew
 """
 import pandas as pd
-import geopandas as gpd
-import os
-import glob
 import matplotlib.pyplot as plt
 plt.rcParams['figure.dpi'] = 300
 
@@ -61,7 +58,7 @@ Trump_Data.set_index("Department Name", inplace=True)
 fig,ax=plt.subplots(figsize=(12,6))
 
 # Create a stacked bar chart
-chart2 = Trump_Data.plot.barh(stacked=True, width=0.8, ax=ax)
+chart2 = Trump_Data.plot.barh(stacked=True, width=0.6, ax=ax)
 
 chart2.tick_params(axis='x', labelsize=8)
 
@@ -84,3 +81,41 @@ fig.tight_layout()
 # Save the plot to a file
 fig.savefig('Trump_Admin.png')
 
+#%%
+Trump_Total_Data = pd.DataFrame({
+    "Department Name": Trump_Admin["Department Name"],
+    "Asian-Pacific American": Trump_Admin["Asian-Pacific American Owned Dollars"],
+    "Black American": Trump_Admin["Black American Owned Dollars"],
+    "Hispanic American": Trump_Admin["Hispanic American Owned Dollars"],
+    "Native American": Trump_Admin["Native American Owned Dollars"],
+    "Subcontinent Asian (Asian-Indian)": Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"],
+    "Other Minority": Trump_Admin["Other Minority Owned Business Dollars"]
+})
+# Set the index to "Department Name"
+Trump_Total_Data.set_index("Department Name", inplace=True)
+
+fig,ax=plt.subplots(figsize=(12,6))
+
+# Create a stacked bar chart
+chart = Trump_Total_Data.plot.barh(stacked=True, width=0.6, ax=ax)
+
+chart.tick_params(axis='x', labelsize=8)
+
+# Add labels and title
+chart.set_xlabel('Total Minority Owned Business Dollars')
+chart.set_ylabel('Department Name')
+chart.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Trump Administration')
+
+# Adjust the font size of the x-axis tick labels
+chart.tick_params(axis='x', labelsize=7)
+
+# Increase the spacing between the bars
+chart.set_axisbelow(True)
+chart.yaxis.grid(True)
+chart.xaxis.grid(False)
+chart.set_axisbelow(True)
+#plt.subplots_adjust(bottom=0.15)
+chart.legend(loc="upper left", bbox_to_anchor=(1,1))
+fig.tight_layout()
+# Save the plot to a file
+fig.savefig('Trump_Admin_Total.png')
