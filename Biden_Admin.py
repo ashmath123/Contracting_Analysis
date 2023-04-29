@@ -15,10 +15,8 @@ Biden_Admin = pd.read_excel(case3)
 
 #%%
 # Drop columns
-Biden_drop_columns = ['Total Actions', 'Total Dollars',
-       'Large Business Actions', 
-       'Small Business Actions', 
-       'Total Education Actions',
+Biden_drop_columns = ['Total Actions','Large Business Actions', 
+       'Small Business Actions','Total Education Actions',
        'HBCU (Historically Black College or University) Actions',
        'MI (Minority Institutions) Actions', 'HBCU and MI Actions',
        'Other Education Actions', 'Total Education Dollars',
@@ -90,6 +88,7 @@ Biden_Admin = Biden_Admin[~Biden_Admin["Department Name"].isin(Biden_bad_rows)]
 #%%
 # Convert to floats
 # Convert float columns to string type
+Biden_Admin["Total Dollars"] = Biden_Admin["Total Dollars"].astype(str)
 Biden_Admin["Total Minority Owned Business Dollars"] = Biden_Admin["Total Minority Owned Business Dollars"].astype(str)
 Biden_Admin["Small Business Dollars"] = Biden_Admin["Small Business Dollars"].astype(str)
 Biden_Admin["Asian-Pacific American Owned Dollars"] = Biden_Admin["Asian-Pacific American Owned Dollars"].astype(str)
@@ -100,6 +99,7 @@ Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Biden_Admin["Su
 Biden_Admin["Other Minority Owned Business Dollars"] = Biden_Admin["Other Minority Owned Business Dollars"].astype(str)
 
 # Use .str method to remove commas and dollar signs
+Biden_Admin["Total Dollars"] = Biden_Admin["Total Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 Biden_Admin["Total Minority Owned Business Dollars"] = Biden_Admin["Total Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 Biden_Admin["Small Business Dollars"] = Biden_Admin["Small Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 Biden_Admin["Asian-Pacific American Owned Dollars"] = Biden_Admin["Asian-Pacific American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
@@ -111,22 +111,28 @@ Biden_Admin["Other Minority Owned Business Dollars"] = Biden_Admin["Other Minori
 
 #%%
 # Create Proportions
-Biden_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = Biden_Admin["Asian-Pacific American Owned Dollars"]/ Biden_Admin["Total Minority Owned Business Dollars"]
-Biden_Admin["Proportion of Black American Owned Dollars to Total Minority Owned Business Dollars"] = Biden_Admin["Black American Owned Dollars"]/ Biden_Admin["Total Minority Owned Business Dollars"]
-Biden_Admin["Proportion of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"] = Biden_Admin["Hispanic American Owned Dollars"]/ Biden_Admin["Total Minority Owned Business Dollars"]
-Biden_Admin["Proportion of Native American Owned Dollars to Total Minority Owned Business Dollars"] = Biden_Admin["Native American Owned Dollars"]/ Biden_Admin["Total Minority Owned Business Dollars"]
-Biden_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"] =Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"]/ Biden_Admin["Total Minority Owned Business Dollars"]
-Biden_Admin['Proportion of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars'] = Biden_Admin["Other Minority Owned Business Dollars"]/ Biden_Admin["Total Minority Owned Business Dollars"]
+denominator = Biden_Admin["Total Minority Owned Business Dollars"]/2.25
+
+Biden_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Asian-Pacific American Owned Dollars"]/2.25)/ denominator)*100
+Biden_Admin["Percent of Black American Owned Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Black American Owned Dollars"]/2.25)/ denominator)*100
+Biden_Admin["Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Hispanic American Owned Dollars"]/2.25)/ denominator)*100
+Biden_Admin["Percent of Native American Owned Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Native American Owned Dollars"]/2.25)/ denominator)*100
+Biden_Admin["Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"]/2.25)/ denominator)*100
+Biden_Admin["Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Other Minority Owned Business Dollars"]/2.25)/ denominator)*100
+
+# Save good DataFrame to csv
+Biden_Admin.to_csv("Biden_Admin_Filtered.csv")
+
 
 #%%
 Biden_Data = pd.DataFrame({
     "Department Name": Biden_Admin["Department Name"],
-    "Asian-Pacific American": Biden_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Black American": Biden_Admin["Proportion of Black American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Hispanic American": Biden_Admin["Proportion of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Native American": Biden_Admin["Proportion of Native American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Subcontinent Asian (Asian-Indian)": Biden_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"],
-    "Other Minority": Biden_Admin['Proportion of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars']
+    "Asian-Pacific American": Biden_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Black American": Biden_Admin["Percent of Black American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Hispanic American": Biden_Admin["Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Native American": Biden_Admin["Percent of Native American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Subcontinent Asian (Asian-Indian)": Biden_Admin["Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"],
+    "Other Minority": Biden_Admin['Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars']
 })
 
 # Set the index to "Department Name"
@@ -140,9 +146,9 @@ chart3 = Biden_Data.plot.barh(stacked=True, width=0.6, ax=ax)
 chart3.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart3.set_xlabel('Share of Total Minority Owned Business Dollars')
-chart3.set_ylabel('Department Name')
-chart3.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Biden Administration')
+chart3.set_xlabel("Percent of Total Minority Owned Business Dollars Spent")
+chart3.set_ylabel("Department Name")
+chart3.set_title("Contracting Percentages to Minority Owned Businesses \n Trump Administration - Executive Departments")
 
 # Adjust the font size of the x-axis tick labels
 chart3.tick_params(axis='x', labelsize=7)
@@ -161,12 +167,12 @@ fig.savefig('Biden_Admin.png')
 #%%
 Biden_Total_Data = pd.DataFrame({
     "Department Name": Biden_Admin["Department Name"],
-    "Asian-Pacific American": Biden_Admin["Asian-Pacific American Owned Dollars"],
-    "Black American": Biden_Admin["Black American Owned Dollars"],
-    "Hispanic American": Biden_Admin["Hispanic American Owned Dollars"],
-    "Native American": Biden_Admin["Native American Owned Dollars"],
-    "Subcontinent Asian (Asian-Indian)": Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"],
-    "Other Minority": Biden_Admin["Other Minority Owned Business Dollars"]
+    "Asian-Pacific American": (Biden_Admin["Asian-Pacific American Owned Dollars"]/2.25)/1e9,
+    "Black American": (Biden_Admin["Black American Owned Dollars"]/2.25)/1e9,
+    "Hispanic American": (Biden_Admin["Hispanic American Owned Dollars"]/2.25)/1e9,
+    "Native American": (Biden_Admin["Native American Owned Dollars"]/2.25)/1e9,
+    "Subcontinent Asian (Asian-Indian)": (Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"]/2.25)/1e9,
+    "Other Minority": (Biden_Admin["Other Minority Owned Business Dollars"]/2.25)/1e9
 })
 # Set the index to "Department Name"
 Biden_Total_Data.set_index("Department Name", inplace=True)
@@ -179,9 +185,9 @@ chart = Biden_Total_Data.plot.barh(stacked=True, width=0.6, ax=ax)
 chart.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart.set_xlabel('Total Minority Owned Business Dollars')
+chart.set_xlabel('Total Minority Owned Business Dollars (in Billions)')
 chart.set_ylabel('Department Name')
-chart.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Biden Administration')
+chart.set_title('Annual Contracting Dollars to Minority Owned Businesses - Total Spend \n Biden Administration - Executive Departments')
 
 # Adjust the font size of the x-axis tick labels
 chart.tick_params(axis='x', labelsize=7)

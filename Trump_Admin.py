@@ -15,10 +15,8 @@ Trump_Admin = pd.read_excel(case2)
 
 #%%
 # Drop columns
-Trump_drop_columns = ['Total Actions', 'Total Dollars',
-       'Large Business Actions', 
-       'Small Business Actions', 
-       'Total Education Actions',
+Trump_drop_columns = ['Total Actions','Large Business Actions', 
+       'Small Business Actions','Total Education Actions',
        'HBCU (Historically Black College or University) Actions',
        'MI (Minority Institutions) Actions', 'HBCU and MI Actions',
        'Other Education Actions', 'Total Education Dollars',
@@ -89,6 +87,7 @@ Trump_Admin = Trump_Admin[~Trump_Admin["Department Name"].isin(Trump_bad_rows)]
 #%%    
 # Convert to floats
 # Convert float columns to string type
+Trump_Admin["Total Dollars"] = Trump_Admin["Total Dollars"].astype(str)
 Trump_Admin["Total Minority Owned Business Dollars"] = Trump_Admin["Total Minority Owned Business Dollars"].astype(str)
 Trump_Admin["Small Business Dollars"] = Trump_Admin["Small Business Dollars"].astype(str)
 Trump_Admin["Asian-Pacific American Owned Dollars"] = Trump_Admin["Asian-Pacific American Owned Dollars"].astype(str)
@@ -99,6 +98,7 @@ Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Trump_Admin["Su
 Trump_Admin["Other Minority Owned Business Dollars"] = Trump_Admin["Other Minority Owned Business Dollars"].astype(str)
 
 # Use .str method to remove commas and dollar signs
+Trump_Admin["Total Dollars"] = Trump_Admin["Total Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 Trump_Admin["Total Minority Owned Business Dollars"] = Trump_Admin["Total Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 Trump_Admin["Small Business Dollars"] = Trump_Admin["Small Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 Trump_Admin["Asian-Pacific American Owned Dollars"] = Trump_Admin["Asian-Pacific American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
@@ -109,23 +109,27 @@ Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Trump_Admin["Su
 Trump_Admin["Other Minority Owned Business Dollars"] = Trump_Admin["Other Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 
 #%%
-# Create Proportions
-Trump_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Asian-Pacific American Owned Dollars"]/ Trump_Admin["Total Minority Owned Business Dollars"]
-Trump_Admin["Proportion of Black American Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Black American Owned Dollars"]/ Trump_Admin["Total Minority Owned Business Dollars"]
-Trump_Admin["Proportion of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Hispanic American Owned Dollars"]/ Trump_Admin["Total Minority Owned Business Dollars"]
-Trump_Admin["Proportion of Native American Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Native American Owned Dollars"]/ Trump_Admin["Total Minority Owned Business Dollars"]
-Trump_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"] = Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"]/ Trump_Admin["Total Minority Owned Business Dollars"]
-Trump_Admin['Proportion of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars'] = Trump_Admin["Other Minority Owned Business Dollars"]/ Trump_Admin["Total Minority Owned Business Dollars"]
+denominator = Trump_Admin["Total Minority Owned Business Dollars"]/4
+
+Trump_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Asian-Pacific American Owned Dollars"]/4)/ denominator)*100
+Trump_Admin["Percent of Black American Owned Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Black American Owned Dollars"]/4)/ denominator)*100
+Trump_Admin["Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Hispanic American Owned Dollars"]/4)/ denominator)*100
+Trump_Admin["Percent of Native American Owned Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Native American Owned Dollars"]/4)/ denominator)*100
+Trump_Admin["Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"]/4)/ denominator)*100
+Trump_Admin["Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Other Minority Owned Business Dollars"]/4)/ denominator)*100
+
+# Save good DataFrame to csv
+Trump_Admin.to_csv("Trump_Admin_Filtered.csv")
 
 #%%
 Trump_Data = pd.DataFrame({
     "Department Name": Trump_Admin["Department Name"],
-    "Asian-Pacific American": Trump_Admin["Proportion of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Black American": Trump_Admin["Proportion of Black American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Hispanic American": Trump_Admin["Proportion of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Native American": Trump_Admin["Proportion of Native American Owned Dollars to Total Minority Owned Business Dollars"],
-    "Subcontinent Asian (Asian-Indian)": Trump_Admin["Proportion of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"],
-    "Other Minority": Trump_Admin['Proportion of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars']
+    "Asian-Pacific American": Trump_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Black American": Trump_Admin["Percent of Black American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Hispanic American": Trump_Admin["Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Native American": Trump_Admin["Percent of Native American Owned Dollars to Total Minority Owned Business Dollars"],
+    "Subcontinent Asian (Asian-Indian)": Trump_Admin["Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"],
+    "Other Minority": Trump_Admin["Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars"]
 })
 
 # Set the index to "Department Name"
@@ -134,25 +138,25 @@ Trump_Data.set_index("Department Name", inplace=True)
 fig,ax=plt.subplots(figsize=(12,6))
 
 # Create a stacked bar chart
-chart2 = Trump_Data.plot.barh(stacked=True, width=0.6, ax=ax)
+chart = Trump_Data.plot.barh(stacked=True, width=0.6, ax=ax)
 
-chart2.tick_params(axis='x', labelsize=8)
+chart.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart2.set_xlabel('Share of Total Minority Owned Business Dollars')
-chart2.set_ylabel('Department Name')
-chart2.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Trump Administration')
+chart.set_xlabel("Percent of Total Minority Owned Business Dollars Spent")
+chart.set_ylabel("Department Name")
+chart.set_title("Contracting Percentages to Minority Owned Businesses \n Trump Administration - Executive Departments")
 
 # Adjust the font size of the x-axis tick labels
-chart2.tick_params(axis='x', labelsize=7)
+chart.tick_params(axis='x', labelsize=7)
 
 # Increase the spacing between the bars
-chart2.set_axisbelow(True)
-chart2.yaxis.grid(True)
-chart2.xaxis.grid(False)
-chart2.set_axisbelow(True)
+chart.set_axisbelow(True)
+chart.yaxis.grid(True)
+chart.xaxis.grid(False)
+chart.set_axisbelow(True)
 #plt.subplots_adjust(bottom=0.15)
-chart2.legend(loc="upper left", bbox_to_anchor=(1,1))
+chart.legend(loc="upper left", bbox_to_anchor=(1,1))
 fig.tight_layout()
 # Save the plot to a file
 fig.savefig('Trump_Admin.png')
@@ -160,12 +164,12 @@ fig.savefig('Trump_Admin.png')
 #%%
 Trump_Total_Data = pd.DataFrame({
     "Department Name": Trump_Admin["Department Name"],
-    "Asian-Pacific American": Trump_Admin["Asian-Pacific American Owned Dollars"],
-    "Black American": Trump_Admin["Black American Owned Dollars"],
-    "Hispanic American": Trump_Admin["Hispanic American Owned Dollars"],
-    "Native American": Trump_Admin["Native American Owned Dollars"],
-    "Subcontinent Asian (Asian-Indian)": Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"],
-    "Other Minority": Trump_Admin["Other Minority Owned Business Dollars"]
+    "Asian-Pacific American": (Trump_Admin["Asian-Pacific American Owned Dollars"]/4)/1e9,
+    "Black American": (Trump_Admin["Black American Owned Dollars"]/4)/1e9,
+    "Hispanic American": (Trump_Admin["Hispanic American Owned Dollars"]/4)/1e9,
+    "Native American": (Trump_Admin["Native American Owned Dollars"]/4)/1e9,
+    "Subcontinent Asian (Asian-Indian)": (Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"]/4)/1e9,
+    "Other Minority": (Trump_Admin["Other Minority Owned Business Dollars"]/4)/1e9
 })
 # Set the index to "Department Name"
 Trump_Total_Data.set_index("Department Name", inplace=True)
@@ -178,9 +182,9 @@ chart = Trump_Total_Data.plot.barh(stacked=True, width=0.6, ax=ax)
 chart.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart.set_xlabel('Total Minority Owned Business Dollars')
+chart.set_xlabel('Total Minority Owned Business Dollars (in Billions)')
 chart.set_ylabel('Department Name')
-chart.set_title('Contracting Rates to Minority Owned Businesses by Executive Department \n Trump Administration')
+chart.set_title('Annual Contracting Dollars to Minority Owned Businesses - Total Spend \n Trump Administration - Executive Departments')
 
 # Adjust the font size of the x-axis tick labels
 chart.tick_params(axis='x', labelsize=7)
