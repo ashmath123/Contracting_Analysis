@@ -111,6 +111,8 @@ Biden_Admin["Other Minority Owned Business Dollars"] = Biden_Admin["Other Minori
 
 #%%
 # Create Proportions
+Biden_Admin["Percent of Minority Owned Business Contracting to Total Contracting Dollars"] = ((Biden_Admin["Total Minority Owned Business Dollars"]/2.25)/(Biden_Admin["Total Dollars"]/2.25))*100
+
 denominator = Biden_Admin["Total Minority Owned Business Dollars"]/2.25
 
 Biden_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = ((Biden_Admin["Asian-Pacific American Owned Dollars"]/2.25)/ denominator)*100

@@ -110,6 +110,8 @@ Obama_Admin["Other Minority Owned Business Dollars"] = Obama_Admin["Other Minori
 
 #%%
 # Create Proportions
+Obama_Admin["Percent of Minority Owned Business Contracting to Total Contracting Dollars"] = ((Obama_Admin["Total Minority Owned Business Dollars"]/8)/(Obama_Admin["Total Dollars"]/8))*100
+
 denominator = Obama_Admin["Total Minority Owned Business Dollars"]/8
 
 Obama_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = ((Obama_Admin["Asian-Pacific American Owned Dollars"]/8)/ denominator)*100

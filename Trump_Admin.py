@@ -76,7 +76,7 @@ Trump_bad_rows = ["ADMINISTRATIVE CONFERENCE OF THE U. S.", "AGENCY FOR INTERNAT
 	"RAILROAD RETIREMENT BOARD","RECOVERY ACCOUNTABILITY AND TRANSPARENCY BOARD","SECURITIES AND EXCHANGE COMMISSION",
 	"SELECTIVE SERVICE SYSTEM","SMALL BUSINESS ADMINISTRATION","SMITHSONIAN INSTITUTION",
 	"SOCIAL SECURITY ADMINISTRATION","THE COUNCIL OF THE INSPECTORS GENERAL ON INTEGRITY AND EFFICIENCY",
-	"THE INSTITUTE OF MUSEUM AND LIBRARY SERVICES","Total","UNITED STATES AGENCY FOR GLOBAL MEDIA, BBG",
+	"THE INSTITUTE OF MUSEUM AND LIBRARY SERVICES","UNITED STATES AGENCY FOR GLOBAL MEDIA, BBG",
 	"UNITED STATES TRADE AND DEVELOPMENT AGENCY", "FEDERAL LABOR RELATIONS AUTHORITY", "FEDERAL MARITIME COMMISSION",
     "NUCLEAR WASTE TECHNICAL REVIEW BOARD", "VIETNAM EDUCATION FOUNDATION", "MARINE MAMMAL COMMISSION",
     "DISTRICT OF COLUMBIA COURTS", "COMMITTEE FOR PURCHASE FROM PEOPLE WHO ARE BLIND OR SEVERELY DISABLED",
@@ -109,6 +109,8 @@ Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Trump_Admin["Su
 Trump_Admin["Other Minority Owned Business Dollars"] = Trump_Admin["Other Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
 
 #%%
+Trump_Admin["Percent of Minority Owned Business Contracting to Total Contracting Dollars"] = ((Trump_Admin["Total Minority Owned Business Dollars"]/4)/(Trump_Admin["Total Dollars"]/4))*100
+
 denominator = Trump_Admin["Total Minority Owned Business Dollars"]/4
 
 Trump_Admin["Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars"] = ((Trump_Admin["Asian-Pacific American Owned Dollars"]/4)/ denominator)*100

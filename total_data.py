@@ -7,15 +7,37 @@ Created on Fri Apr 28 15:28:57 2023
 """
 import pandas as pd
 import matplotlib.pyplot as plt
+
 plt.rcParams['figure.dpi'] = 300
 
 Obama_Admin = pd.read_csv("Obama_Admin_Filtered.csv")
 Trump_Admin = pd.read_csv("Trump_Admin_Filtered.csv")
 Biden_Admin = pd.read_csv("Biden_Admin_Filtered.csv")
 
-# Create percentage
-Obama_Admin["MOB_Total_Obama"] = (Obama_Admin["Total Minority Owned Business Dollars"]/ Obama_Admin["Total Dollars"])*100
-Trump_Admin["MOB_Total_Trump"] = (Trump_Admin["Total Minority Owned Business Dollars"]/ Trump_Admin["Total Dollars"])*100
-Biden_Admin["MOB_Total_Biden"] = (Biden_Admin["Total Minority Owned Business Dollars"]/ Biden_Admin["Total Dollars"])*100
+admins = {"Obama": Obama_Admin,
+         "Trump": Trump_Admin,
+         "Biden": Biden_Admin}
 
-print(Obama_Admin["MOB_Total_Obama"],Trump_Admin["MOB_Total_Trump"],Biden_Admin["MOB_Total_Biden"])
+Total_Data = pd.concat(admins).reset_index()
+Total_Data["Department Name"] = Total_Data["Department Name"].str.strip()
+pivot_table = Total_Data.pivot(index="Department Name", columns="level_0", values="Percent of Minority Owned Business Contracting to Total Contracting Dollars").round(2)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
