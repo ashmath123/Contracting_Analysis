@@ -152,7 +152,7 @@ chart3.set_xlabel("Percent of Total Minority Owned Business Dollars Spent")
 chart3.set_ylabel("Department Name")
 chart3.set_title("Contracting Percentages to Minority Owned Businesses \n Trump Administration - Executive Departments")
 
-# Adjust the font size of the x-axis tick labels
+# Adjust the font size of the x-axis labels
 chart3.tick_params(axis='x', labelsize=7)
 
 # Increase the spacing between the bars
@@ -160,7 +160,6 @@ chart3.set_axisbelow(True)
 chart3.yaxis.grid(True)
 chart3.xaxis.grid(False)
 chart3.set_axisbelow(True)
-#plt.subplots_adjust(bottom=0.15)
 chart3.legend(loc="upper left", bbox_to_anchor=(1,1))
 fig.tight_layout()
 # Save the plot to a file
@@ -179,19 +178,22 @@ Biden_Total_Data = pd.DataFrame({
 # Set the index to "Department Name"
 Biden_Total_Data.set_index("Department Name", inplace=True)
 
-fig,ax=plt.subplots(figsize=(12,6))
+# Sort the data from smallest to largest
+Biden_Total_Data_Sorted = Biden_Total_Data.loc[Biden_Total_Data.sum(axis=1).sort_values(ascending=False).index]
 
 # Create a stacked bar chart
-chart = Biden_Total_Data.plot.barh(stacked=True, width=0.6, ax=ax)
+fig,ax=plt.subplots(figsize=(12,6))
+
+chart = Biden_Total_Data_Sorted.plot.barh(stacked=True, width=0.6, ax=ax)
 
 chart.tick_params(axis='x', labelsize=8)
 
 # Add labels and title
-chart.set_xlabel('Total Minority Owned Business Dollars (in Billions)')
-chart.set_ylabel('Department Name')
-chart.set_title('Annual Contracting Dollars to Minority Owned Businesses - Total Spend \n Biden Administration - Executive Departments')
+chart.set_xlabel("Total Minority Owned Business Dollars (in Billions)")
+chart.set_ylabel("Department Name")
+chart.set_title("Annual Contracting Dollars to Minority Owned Businesses - Total Spend \n Biden Administration - Executive Departments")
 
-# Adjust the font size of the x-axis tick labels
+# Adjust the font size of the x-axis labels
 chart.tick_params(axis='x', labelsize=7)
 
 # Increase the spacing between the bars
@@ -199,8 +201,8 @@ chart.set_axisbelow(True)
 chart.yaxis.grid(True)
 chart.xaxis.grid(False)
 chart.set_axisbelow(True)
-#plt.subplots_adjust(bottom=0.15)
 chart.legend(loc="upper left", bbox_to_anchor=(1,1))
 fig.tight_layout()
+
 # Save the plot to a file
-fig.savefig('Biden_Admin_Total.png')
+fig.savefig("Biden_Admin_Total.png")
