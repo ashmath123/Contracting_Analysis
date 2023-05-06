@@ -86,28 +86,17 @@ Biden_bad_rows = ["ADMINISTRATIVE CONFERENCE OF THE U. S.", "AGENCY FOR INTERNAT
 Biden_Admin = Biden_Admin[~Biden_Admin["Department Name"].isin(Biden_bad_rows)]
 
 #%%
-# Convert to floats
-# Convert float columns to string type
-Biden_Admin["Total Dollars"] = Biden_Admin["Total Dollars"].astype(str)
-Biden_Admin["Total Minority Owned Business Dollars"] = Biden_Admin["Total Minority Owned Business Dollars"].astype(str)
-Biden_Admin["Small Business Dollars"] = Biden_Admin["Small Business Dollars"].astype(str)
-Biden_Admin["Asian-Pacific American Owned Dollars"] = Biden_Admin["Asian-Pacific American Owned Dollars"].astype(str)
-Biden_Admin["Black American Owned Dollars"] = Biden_Admin["Black American Owned Dollars"].astype(str)
-Biden_Admin["Hispanic American Owned Dollars"] = Biden_Admin["Hispanic American Owned Dollars"].astype(str)
-Biden_Admin["Native American Owned Dollars"] = Biden_Admin["Native American Owned Dollars"].astype(str)
-Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"].astype(str)
-Biden_Admin["Other Minority Owned Business Dollars"] = Biden_Admin["Other Minority Owned Business Dollars"].astype(str)
 
-# Use .str method to remove commas and dollar signs
-Biden_Admin["Total Dollars"] = Biden_Admin["Total Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Total Minority Owned Business Dollars"] = Biden_Admin["Total Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Small Business Dollars"] = Biden_Admin["Small Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Asian-Pacific American Owned Dollars"] = Biden_Admin["Asian-Pacific American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Black American Owned Dollars"] = Biden_Admin["Black American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Hispanic American Owned Dollars"] = Biden_Admin["Hispanic American Owned Dollars"].str.replace('()', '').str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Native American Owned Dollars"] = Biden_Admin["Native American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Biden_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Biden_Admin["Other Minority Owned Business Dollars"] = Biden_Admin["Other Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
+def update_columns(Biden_Admin, columns):
+    for col in columns:
+        Biden_Admin[col] = Biden_Admin[col].astype(str)
+        Biden_Admin[col] = Biden_Admin[col].str.replace(',', '').str.replace('$', '').astype(float)
+
+update_columns(Biden_Admin, ["Total Dollars", "Total Minority Owned Business Dollars", 
+                             "Small Business Dollars", "Asian-Pacific American Owned Dollars", 
+                             "Black American Owned Dollars", "Hispanic American Owned Dollars", 
+                             "Native American Owned Dollars", "Subcontinent Asian (Asian-Indian) Owned Dollars", 
+                             "Other Minority Owned Business Dollars"])
 
 #%%
 # Create Proportions

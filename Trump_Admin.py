@@ -83,31 +83,20 @@ Trump_bad_rows = ["ADMINISTRATIVE CONFERENCE OF THE U. S.", "AGENCY FOR INTERNAT
     "UNITED STATES INTERNATIONAL DEVELOPMENT FINANCE CORPORATION", "Total"]
 
 Trump_Admin = Trump_Admin[~Trump_Admin["Department Name"].isin(Trump_bad_rows)]
-       
-#%%    
-# Convert to floats
-# Convert float columns to string type
-Trump_Admin["Total Dollars"] = Trump_Admin["Total Dollars"].astype(str)
-Trump_Admin["Total Minority Owned Business Dollars"] = Trump_Admin["Total Minority Owned Business Dollars"].astype(str)
-Trump_Admin["Small Business Dollars"] = Trump_Admin["Small Business Dollars"].astype(str)
-Trump_Admin["Asian-Pacific American Owned Dollars"] = Trump_Admin["Asian-Pacific American Owned Dollars"].astype(str)
-Trump_Admin["Black American Owned Dollars"] = Trump_Admin["Black American Owned Dollars"].astype(str)
-Trump_Admin["Hispanic American Owned Dollars"] = Trump_Admin["Hispanic American Owned Dollars"].astype(str)
-Trump_Admin["Native American Owned Dollars"] = Trump_Admin["Native American Owned Dollars"].astype(str)
-Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"].astype(str)
-Trump_Admin["Other Minority Owned Business Dollars"] = Trump_Admin["Other Minority Owned Business Dollars"].astype(str)
+     
+#%%
 
-# Use .str method to remove commas and dollar signs
-Trump_Admin["Total Dollars"] = Trump_Admin["Total Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Total Minority Owned Business Dollars"] = Trump_Admin["Total Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Small Business Dollars"] = Trump_Admin["Small Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Asian-Pacific American Owned Dollars"] = Trump_Admin["Asian-Pacific American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Black American Owned Dollars"] = Trump_Admin["Black American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Hispanic American Owned Dollars"] = Trump_Admin["Hispanic American Owned Dollars"].str.replace('()', '').str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Native American Owned Dollars"] = Trump_Admin["Native American Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"] = Trump_Admin["Subcontinent Asian (Asian-Indian) Owned Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
-Trump_Admin["Other Minority Owned Business Dollars"] = Trump_Admin["Other Minority Owned Business Dollars"].str.replace(',', '').str.replace('$', '').astype(float)
+def update_columns(Trump_Admin, columns):
+    for col in columns:
+        Trump_Admin[col] = Trump_Admin[col].astype(str)
+        Trump_Admin[col] = Trump_Admin[col].str.replace(',', '').str.replace('$', '').astype(float)
 
+update_columns(Trump_Admin, ["Total Dollars", "Total Minority Owned Business Dollars", 
+                             "Small Business Dollars", "Asian-Pacific American Owned Dollars", 
+                             "Black American Owned Dollars", "Hispanic American Owned Dollars", 
+                             "Native American Owned Dollars", "Subcontinent Asian (Asian-Indian) Owned Dollars", 
+                             "Other Minority Owned Business Dollars"])
+  
 #%%
 Trump_Admin["Percent of Minority Owned Business Contracting to Total Contracting Dollars"] = ((Trump_Admin["Total Minority Owned Business Dollars"]/4)/(Trump_Admin["Total Dollars"]/4))*100
 
