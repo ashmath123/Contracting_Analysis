@@ -46,7 +46,7 @@ title = "Percent of Minority Owned Business Contracting Dollars to Total Contrac
 fig.suptitle(title)
 
 fig.tight_layout()
-fig.savefig("Pivot_table_total.png")
+fig.savefig("pivot_table_total.png")
 
 
 
