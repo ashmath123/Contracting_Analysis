@@ -123,7 +123,7 @@ Biden_Data = pd.DataFrame({
     "Hispanic American": Biden_Admin["Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars"],
     "Native American": Biden_Admin["Percent of Native American Owned Dollars to Total Minority Owned Business Dollars"],
     "Subcontinent Asian (Asian-Indian)": Biden_Admin["Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars"],
-    "Other Minority": Biden_Admin['Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars']
+    "Other Minority": Biden_Admin["Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars"]
 })
 
 # Set the index to "Department Name"
