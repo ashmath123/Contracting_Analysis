@@ -194,9 +194,3 @@ fig.tight_layout()
 fig.savefig("Obama_Admin_Total.png")
 
 #%%
-
-
-
-
-
-
