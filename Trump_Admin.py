@@ -136,7 +136,7 @@ chart.tick_params(axis='x', labelsize=8)
 # Add labels and title
 chart.set_xlabel("Percent of Total Minority Owned Business Dollars Spent")
 chart.set_ylabel("Department Name")
-chart.set_title("Contracting Percentages to Minority Owned Businesses \n Trump Administration - Executive Departments")
+chart.set_title("Figure Three: Contracting Percentages to Minority Owned Businesses \n Trump Administration - Executive Departments")
 
 # Adjust the font size of the x-axis labels
 chart.tick_params(axis='x', labelsize=7)
@@ -177,7 +177,7 @@ chart.tick_params(axis='x', labelsize=8)
 # Add labels and title
 chart.set_xlabel("Total Minority Owned Business Dollars (in Billions)")
 chart.set_ylabel("Department Name")
-chart.set_title("Annual Contracting Dollars to Minority Owned Businesses - Total Spend \n Trump Administration - Executive Departments")
+chart.set_title("Figure Four: Annual Contracting Dollars to Minority Owned Businesses - Total Spend \n Trump Administration - Executive Departments")
 
 # Adjust the font size of the x-axis labels
 chart.tick_params(axis='x', labelsize=7)

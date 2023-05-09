@@ -43,7 +43,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Minority Owned Business Contracting Dollars to Total Contracting Dollars \n Under Obama, Trump, and Biden Administration"
+title = " Table One: Percent of Minority Owned Business Contracting Dollars to Total Contracting Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
@@ -67,7 +67,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
+title = "Table Two: Percent of Asian-Pacific American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
@@ -91,7 +91,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Black American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
+title = "Table Three: Percent of Black American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
@@ -115,7 +115,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
+title = "Table Four: Percent of Hispanic American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
@@ -139,7 +139,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Native American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
+title = "Table Five: Percent of Native American Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
@@ -163,7 +163,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
+title = "Table Six: Percent of Subcontinent Asian (Asian-Indian) Owned Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
@@ -187,7 +187,7 @@ table = ax.table(cellText=pivot_table.values, colLabels=pivot_table.columns, row
 table.auto_set_font_size(False)
 table.set_fontsize(8)
 
-title = "Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
+title = "Table Seven: Percent of Other Minority Owned Business Dollars to Total Minority Owned Business Dollars \n Under Obama, Trump, and Biden Administration"
 fig.suptitle(title)
 
 fig.tight_layout()
