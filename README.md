@@ -83,5 +83,12 @@ The images listed above represent spending to minority-owned businesses under th
 
 ![Alt Text](Trump_Admin.png)
 ![Alt Text](Trump_Admin_Total.png)
+Figure three and figure four represent spending to minority-owned businesses under the Trump administration. In comparison to the Obama administration, the figures above display changes in percentages to different minority-owned business classifications and overall department spending. One way this could be seen is in the order of department spending in figure four. Under the Obama administration, the Department of Education spent the least on minority-owned business contracting while in the Trump administration the Department of Housing and Urban Development spent the least. It is also important to note the general increase in spending that occurred across the board.  
+
+*Biden Administration*
+
+![Alt Text](Biden_Admin.png)
+![Alt Text](Biden_Admin_Total.png)
+
 
 

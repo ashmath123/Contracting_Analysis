@@ -139,7 +139,7 @@ chart3.tick_params(axis='x', labelsize=8)
 # Add labels and title
 chart3.set_xlabel("Percent of Total Minority Owned Business Dollars Spent")
 chart3.set_ylabel("Department Name")
-chart3.set_title("Figure Five: Contracting Percentages to Minority Owned Businesses \n Trump Administration - Executive Departments")
+chart3.set_title("Figure Five: Contracting Percentages to Minority Owned Businesses \n Biden Administration - Executive Departments")
 
 # Adjust the font size of the x-axis labels
 chart3.tick_params(axis='x', labelsize=7)
