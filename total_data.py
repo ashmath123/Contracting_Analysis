@@ -25,7 +25,7 @@ admins = {"Obama": Obama_Admin,
 Total_Data = pd.concat(admins).reset_index()
 Total_Data["Department Name"] = Total_Data["Department Name"].str.strip()
 
-# Create a pivot table from Total_Datawhich pulls the percent of Minority 
+# Create a pivot table from Total_Data which pulls the percent of Minority 
 # Owned Business contracting dollars to total contracting dollars
 
 pivot_table = Total_Data.pivot(index="Department Name", columns="level_0", values="Percent of Minority Owned Business Contracting to Total Contracting Dollars").round(2)
