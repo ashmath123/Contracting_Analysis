@@ -90,5 +90,21 @@ Figure three and figure four represent spending to minority-owned businesses und
 ![Alt Text](Biden_Admin.png)
 ![Alt Text](Biden_Admin_Total.png)
 
+Figure five and figure six represent spending to minority-owned businesses under the Biden administration. As stated previously, the total dollars have been divided by the length of the administration to give an annual estimate, so the two figures above just analyze the total dollars spent as of April 27th, 2023. Replication of this project on the Biden administration, once the presidency is completed, could show additional results or changed proportions. With that said, the results listed above could be used as a metric to see the Biden administration’s work in improving contracting rates to minority-owned businesses. Comparing these figures to those from other administrations show that there is a general increase in spending across the board. 
+
+*Analysis Across All Administrations*
+
+![Alt Text](Total_Data.png)
+
+Table one lists the percent of minority-owned business contracting dollars, as part of total contracting dollars, across all three presidential administrations. Analysis shows that there has been an increase in contracting rates during the Biden administration compared to the Trump administration - with the exception of the Department of Education, the Department of Energy, the Department of Treasury, and the Department of Veteran Affairs. When comparing the percentages to the Obama administration, there has been a general increase in all executive departments except for the Department of Energy and Department of Veterans Affairs. These two departments are the only ones that have seen a general decline of minority-owned business contracting across all three administrations. 
+
+Whether or not there was an increase or decrease in percentages across administrations is important to understand; however, it is also important to consider the rate of growth. For example, in all administrations the Department of Defense has consistently spent the most money on minority-owned businesses but it only a small part of their total contracting dollars. There has been less than a 1% increase in the proportion of minority-owned business dollars to total dollars spent across all three administrations. Other agencies have had much more drastic growth. For instance, the Department of Housing and Urban Development went from 32.85% under Obama to 40.99% under Biden. 
+
+![Alt Text](total_data_APA.png)
+![Alt Text](total_data_black.png)
+![Alt Text](total_data_hispanic.png)
+![Alt Text](total_data_native_american.png)
+![Alt Text](total_data_asian_indian.png)
+![Alt Text](total_data_other.png)
 
 
