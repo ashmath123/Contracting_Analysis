@@ -94,7 +94,7 @@ Figure five and figure six represent spending to minority-owned businesses under
 
 *Analysis Across All Administrations*
 
-![Alt Text](Total_Data.png)
+![Alt Text](total_data.png)
 
 Table one lists the percent of minority-owned business contracting dollars, as part of total contracting dollars, across all three presidential administrations. Analysis shows that there has been an increase in contracting rates during the Biden administration compared to the Trump administration - with the exception of the Department of Education, the Department of Energy, the Department of Treasury, and the Department of Veteran Affairs. When comparing the percentages to the Obama administration, there has been a general increase in all executive departments except for the Department of Energy and Department of Veterans Affairs. These two departments are the only ones that have seen a general decline of minority-owned business contracting across all three administrations. 
 
